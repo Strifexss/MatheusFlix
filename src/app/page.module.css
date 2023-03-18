@@ -30,12 +30,35 @@
   color: #fff;
   font-size: 7rem;
   font-weight: bold;
+  text-align: center;
 }
 
 .Titulo h2 {
   color: #fff;
   font-size: 3rem;
   font-weight: 400;
+  text-align: center;
+}
+
+ @media screen and (max-width: 768px) {
+    .Titulo h1 {
+      font-size: 6rem;
+  }
+
+  .Titulo h2 {
+    font-size: 2.5rem;
+}
+}
+
+@media screen and (max-width: 425px) {
+  .Titulo h1 {
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.Titulo h2 {
+  font-size: 1.5rem;
+}
 }
 
 .Titulo button {
