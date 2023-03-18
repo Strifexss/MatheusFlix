@@ -6,14 +6,18 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
 export default function Landing() {
 
-
-   
+/*  <Image
+                src={`https://image.tmdb.org/t/p/w500/${data.backdrop_path}`}
+                width={500}
+                height={500}
+                alt="Imagem"
+            />
+   */
 const { isLoading, error, data} =useQuery('repoData', async () =>
-     await axios.get("https://api.themoviedb.org/3/movie/550?api_key=86a47f147df3b21061aaf12f619122fd")
+     await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=86a47f147df3b21061aaf12f619122fd&language=en-US&page=1")
     .then(response => {
     console.log(response.data)
-      return response.data
-     
+      return response.data.results
     }),
     {
       retry: 5, //Se a requisição falhar, ele vai tentar mais 5 vezes
@@ -29,14 +33,20 @@ const { isLoading, error, data} =useQuery('repoData', async () =>
     return(
         <div>
             <h1>Landing</h1>
-            <h1>{data.title}</h1>
-            <Image
-                src={`https://image.tmdb.org/t/p/w500/${data.backdrop_path}`}
+            <Link href={'/'}>Home</Link>    
+            {
+              data.map(x => {
+                return(
+                  <Image
+                src={`https://image.tmdb.org/t/p/w500/${x.poster_path}`}
                 width={500}
                 height={500}
                 alt="Imagem"
             />
-            <Link href={'/'}>Home</Link>      
+                )
+              })
+            }
+              
         </div>
     )
 }
